@@ -3,7 +3,7 @@ import { Clock, ShieldAlert, ShieldCheck, AlertTriangle, ChevronRight, Link as L
 import { timeAgo, truncateUrl } from "@/lib/format";
 import { VERDICT_THEME } from "@/components/VerdictBadge";
 
-export const ThreatHistoryTimeline = ({ scans = [], maxItems = 10 }) => {
+export const ThreatHistoryTimeline = ({ scans = [], maxItems = 10, activeScanId = null, onSelectScan = null }) => {
   const [selectedScan, setSelectedScan] = useState(null);
 
   const displayScans = scans.slice(0, maxItems);
@@ -45,6 +45,7 @@ export const ThreatHistoryTimeline = ({ scans = [], maxItems = 10 }) => {
             const verdictKey = (s?.verdict || "suspicious").toLowerCase();
             const theme = VERDICT_THEME[verdictKey] || VERDICT_THEME.suspicious;
             const Icon = theme.icon;
+            const isTargetActive = activeScanId ? activeScanId === s.id : selectedScan?.id === s.id;
             const isSelected = selectedScan?.id === s.id;
 
             return (
@@ -52,7 +53,9 @@ export const ThreatHistoryTimeline = ({ scans = [], maxItems = 10 }) => {
                 {/* Node Marker */}
                 <div
                   className={`absolute -left-[27px] sm:-left-[31px] top-1.5 grid h-5 w-5 place-items-center rounded-full border-2 bg-night-900 transition ${
-                    s.verdict === "phishing"
+                    isTargetActive
+                      ? "border-cyan-400 text-cyan-300 shadow-[0_0_12px_#22d3ee]"
+                      : s.verdict === "phishing"
                       ? "border-red-400 text-red-400 shadow-[0_0_8px_#f43f5e]"
                       : s.verdict === "suspicious"
                       ? "border-amber-400 text-amber-400 shadow-[0_0_8px_#f59e0b]"
@@ -64,9 +67,14 @@ export const ThreatHistoryTimeline = ({ scans = [], maxItems = 10 }) => {
 
                 {/* Content Card */}
                 <div
-                  onClick={() => setSelectedScan(isSelected ? null : s)}
+                  onClick={() => {
+                    setSelectedScan(isSelected ? null : s);
+                    if (onSelectScan) onSelectScan(s);
+                  }}
                   className={`cursor-pointer rounded-2xl border p-4 transition ${
-                    isSelected
+                    isTargetActive
+                      ? "border-cyan-400/70 bg-cyan-500/10 shadow-[0_0_18px_rgba(6,182,212,0.15)] ring-1 ring-cyan-400/40"
+                      : isSelected
                       ? "border-cyan-400/40 bg-white/[0.04]"
                       : "border-white/5 bg-white/[0.015] hover:border-white/10 hover:bg-white/[0.03]"
                   }`}
@@ -78,6 +86,11 @@ export const ThreatHistoryTimeline = ({ scans = [], maxItems = 10 }) => {
                           <Icon className="h-3 w-3" />
                           {theme.label}
                         </span>
+                        {isTargetActive && (
+                          <span className="inline-flex items-center rounded-full border border-cyan-400/50 bg-cyan-400/20 px-2 py-0.5 text-[10px] font-semibold text-cyan-300">
+                            Active Intel Target
+                          </span>
+                        )}
                         <span className="text-[11px] font-mono text-slate-500">
                           {timeAgo(s.scanned_at)}
                         </span>

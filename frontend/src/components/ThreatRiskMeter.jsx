@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ShieldAlert, ShieldCheck, AlertTriangle, Gauge } from "lucide-react";
+import { ShieldAlert, ShieldCheck, AlertTriangle, Gauge, Link2 } from "lucide-react";
 
-export const ThreatRiskMeter = ({ initialScore = 78, interactive = false, title = "Threat Risk Meter" }) => {
+export const ThreatRiskMeter = ({ initialScore = 78, interactive = false, title = "Threat Risk Meter", targetUrl = "" }) => {
   const [score, setScore] = useState(initialScore);
+
+  useEffect(() => {
+    setScore(initialScore);
+  }, [initialScore]);
 
   const getZone = (val) => {
     if (val >= 65) {
@@ -58,6 +62,11 @@ export const ThreatRiskMeter = ({ initialScore = 78, interactive = false, title 
           <div>
             <h3 className="font-display text-base font-semibold text-white">{title}</h3>
             <p className="text-xs text-slate-400">Continuous AI Risk Scoring Engine (0 – 100)</p>
+            {targetUrl && (
+              <p className="mt-1 max-w-[240px] truncate text-[11px] font-mono text-cyan-300" title={targetUrl}>
+                Target: {targetUrl}
+              </p>
+            )}
           </div>
         </div>
         <span className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${zone.bg} ${zone.color}`}>

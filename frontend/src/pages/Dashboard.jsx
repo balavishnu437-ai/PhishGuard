@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ScanLine, ShieldAlert, ShieldCheck, Gauge, RefreshCw, ChevronRight, Radar } from "lucide-react";
+import { ScanLine, ShieldAlert, ShieldCheck, AlertTriangle, Gauge, RefreshCw, ChevronRight, Radar, Radio } from "lucide-react";
 import { toast } from "sonner";
 import {
   ResponsiveContainer, AreaChart, Area, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -47,6 +47,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     load();
+    // Live polling: auto-refresh every 4 seconds to sync newly scanned URLs
+    const timer = setInterval(() => {
+      Promise.all([getStats(), getScans({ limit: 8 })])
+        .then(([s, r]) => {
+          setStats(s);
+          setRecent(r);
+        })
+        .catch(() => {});
+    }, 4000);
+    return () => clearInterval(timer);
   }, [load]);
 
   const split = stats
@@ -67,32 +77,75 @@ const Dashboard = () => {
             <p className="mt-3 text-sm text-slate-400">
               Live statistics from the detection engine ·{" "}
               <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-cyan-200">
-                {stats?.model_version || "PG-Heur v2.1"}
+                {stats?.model_version || "PhishGuard Decision Tree ML (51 Features)"}
               </span>
             </p>
           </div>
-          <button onClick={load} data-testid="dashboard-refresh-button" className="btn-ghost !px-4 !py-2.5 text-xs" disabled={loading}>
-            <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
-            Refresh
-          </button>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+              Live Sync Active
+            </span>
+            <button onClick={load} data-testid="dashboard-refresh-button" className="btn-ghost !px-4 !py-2.5 text-xs" disabled={loading}>
+              <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
+              Refresh
+            </button>
+          </div>
         </Reveal>
 
         {loading && !stats ? (
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[0, 1, 2, 3].map((i) => (
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {[0, 1, 2, 3, 4].map((i) => (
               <div key={i} className="glass h-36 animate-pulse rounded-2xl" />
             ))}
-            <div className="glass h-80 animate-pulse rounded-2xl sm:col-span-2" />
+            <div className="glass h-80 animate-pulse rounded-2xl sm:col-span-3" />
             <div className="glass h-80 animate-pulse rounded-2xl sm:col-span-2" />
           </div>
         ) : (
           <>
             {/* stat cards */}
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard title="Total URLs Scanned" value={stats?.total_scanned || 0} icon={ScanLine} accent="cyan" tooltip="Every URL analyzed by the engine, across all time." />
-              <StatCard title="Phishing Threats Detected" value={stats?.phishing_detected || 0} icon={ShieldAlert} accent="red" delay={0.08} tooltip="URLs classified as phishing (risk score ≥ 65)." />
-              <StatCard title="Safe URLs" value={stats?.safe_urls || 0} icon={ShieldCheck} accent="emerald" delay={0.16} tooltip="URLs with no phishing indicators found." />
-              <StatCard title="Detection Accuracy" value={stats?.accuracy || 96.8} decimals={1} suffix="%" icon={Gauge} accent="blue" delay={0.24} tooltip="Benchmark accuracy of the risk model on the labeled evaluation corpus." />
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              <StatCard
+                title="Total URLs Scanned"
+                value={stats?.total_scanned || 0}
+                icon={ScanLine}
+                accent="cyan"
+                tooltip="Every URL analyzed by the ML engine, across all time."
+              />
+              <StatCard
+                title="Phishing Threats"
+                value={stats?.phishing_detected || 0}
+                icon={ShieldAlert}
+                accent="red"
+                delay={0.08}
+                tooltip="High-severity malicious URLs exhibiting active phishing indicators or credential harvesting."
+              />
+              <StatCard
+                title="Suspicious Links"
+                value={stats?.suspicious || 0}
+                icon={AlertTriangle}
+                accent="amber"
+                delay={0.14}
+                tooltip="URLs exhibiting anomalies, cloaking, or weak threat signals."
+              />
+              <StatCard
+                title="Safe URLs"
+                value={stats?.safe_urls || 0}
+                icon={ShieldCheck}
+                accent="emerald"
+                delay={0.20}
+                tooltip="URLs with no malicious or deceptive indicators."
+              />
+              <StatCard
+                title="Detection Accuracy"
+                value={stats?.accuracy || 97.4}
+                decimals={1}
+                suffix="%"
+                icon={Gauge}
+                accent="blue"
+                delay={0.26}
+                tooltip="Empirical validation accuracy on the PhiUSIIL 51-feature evaluation benchmark."
+              />
             </div>
 
             {/* charts */}

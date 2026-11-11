@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ScanLine, History, CheckCircle2, Fingerprint, Link as LinkIcon, ShieldAlert } from "lucide-react";
+import { ScanLine, History, CheckCircle2, Fingerprint, Link as LinkIcon, ShieldAlert, Radio } from "lucide-react";
 import { VERDICT_THEME } from "@/components/VerdictBadge";
 import { timeAgo } from "@/lib/format";
 import { URLForensics } from "@/components/URLForensics";
@@ -141,6 +141,14 @@ export const ResultCard = ({ result, onReset }) => {
           <ScanLine className="h-4 w-4" />
           Scan another URL
         </button>
+        <Link
+          to={`/threat-intel?scanId=${result.id}`}
+          data-testid="result-view-intel"
+          className="inline-flex items-center gap-2 rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold text-cyan-200 transition hover:bg-cyan-400/20 hover:border-cyan-400/50"
+        >
+          <Radio className="h-3.5 w-3.5 animate-pulse text-cyan-300" />
+          Investigate in Threat Intel Center
+        </Link>
         <Link to="/history" data-testid="result-view-history" className="btn-ghost">
           <History className="h-4 w-4" />
           View scan history

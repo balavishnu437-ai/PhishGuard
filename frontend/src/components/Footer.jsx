@@ -79,11 +79,13 @@ export const Footer = () => (
         <ul className="mt-4 space-y-3 text-sm text-slate-400">
           <li className="flex items-center gap-2.5">
             <Mail className="h-4 w-4 text-cyan-300" />
-            support@phishguard.io
+            <a href="mailto:balavishnu437@gmail.com" className="transition hover:text-cyan-200">
+              balavishnu437@gmail.com
+            </a>
           </li>
           <li className="flex items-center gap-2.5">
             <MapPin className="h-4 w-4 text-cyan-300" />
-            Remote · Global
+            SRM Trichy
           </li>
           <li className="flex items-center gap-2.5">
             <Cpu className="h-4 w-4 text-cyan-300" />

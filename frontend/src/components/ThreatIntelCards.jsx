@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ShieldAlert, BookOpen, CheckCircle, Crosshair, ArrowUpRight } from "lucide-react";
 
-export const ThreatIntelCards = ({ techniques = [] }) => {
+export const ThreatIntelCards = ({ techniques = [], matchedTechniqueId = null }) => {
   const [filter, setFilter] = useState("all");
 
   const categories = ["all", "Initial Access", "Credential Access", "Evasion", "Social Engineering"];
@@ -52,20 +52,33 @@ export const ThreatIntelCards = ({ techniques = [] }) => {
 
       {/* Cards Grid */}
       <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((t) => (
-          <div
-            key={t.id}
-            className="flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 hover:border-cyan-400/30 hover:bg-white/[0.04] group"
-          >
-            <div>
-              <div className="flex items-start justify-between gap-2">
-                <span className="font-mono text-[11px] font-bold text-cyan-300">
-                  {t.id}
-                </span>
-                <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${getSeverityStyle(t.severity)}`}>
-                  {t.severity} · {t.prevalence}
-                </span>
-              </div>
+        {filtered.map((t) => {
+          const isMatched = matchedTechniqueId && t.id === matchedTechniqueId;
+          return (
+            <div
+              key={t.id}
+              className={`flex flex-col justify-between rounded-2xl border p-6 transition duration-300 group ${
+                isMatched
+                  ? "border-cyan-400 bg-cyan-500/[0.08] ring-1 ring-cyan-400/50 shadow-[0_0_24px_rgba(6,182,212,0.22)]"
+                  : "border-white/10 bg-white/[0.02] hover:border-cyan-400/30 hover:bg-white/[0.04]"
+              }`}
+            >
+              <div>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-[11px] font-bold text-cyan-300">
+                      {t.id}
+                    </span>
+                    {isMatched && (
+                      <span className="rounded-full border border-cyan-400/50 bg-cyan-400/20 px-2 py-0.5 text-[10px] font-semibold text-cyan-200 animate-pulse">
+                        Detected in Target
+                      </span>
+                    )}
+                  </div>
+                  <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${getSeverityStyle(t.severity)}`}>
+                    {t.severity} · {t.prevalence}
+                  </span>
+                </div>
 
               <h3 className="mt-3 font-display text-sm font-semibold text-white group-hover:text-cyan-200 transition">
                 {t.name}
@@ -97,7 +110,8 @@ export const ThreatIntelCards = ({ techniques = [] }) => {
               <p className="mt-1 text-[11px] text-slate-300 leading-normal">{t.defense}</p>
             </div>
           </div>
-        ))}
+        );
+      })}
       </div>
     </div>
   );

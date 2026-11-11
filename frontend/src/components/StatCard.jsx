@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 const ACCENTS = {
   cyan: { box: "border-cyan-400/25 bg-cyan-400/10 text-cyan-300", glow: "shadow-glow-cyan", bar: "from-cyan-400 to-sky-500" },
   red: { box: "border-red-400/25 bg-red-400/10 text-red-300", glow: "shadow-glow-red", bar: "from-red-400 to-rose-500" },
+  amber: { box: "border-amber-400/25 bg-amber-400/10 text-amber-300", glow: "shadow-glow-amber", bar: "from-amber-400 to-yellow-500" },
   emerald: { box: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300", glow: "shadow-glow-emerald", bar: "from-emerald-400 to-teal-500" },
   blue: { box: "border-blue-400/25 bg-blue-400/10 text-blue-300", glow: "shadow-glow-blue", bar: "from-blue-400 to-indigo-500" },
 };

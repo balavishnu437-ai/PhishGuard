@@ -5,7 +5,7 @@ import { PageShell, Reveal } from "@/components/Reveal";
 import { sendContact } from "@/lib/api";
 
 const INFO = [
-  { icon: Mail, title: "Email", text: "support@phishguard.io" },
+  { icon: Mail, title: "Email", text: "balavishnu437@gmail.com" },
   { icon: Clock, title: "Response time", text: "Usually within 24 hours" },
   { icon: ShieldQuestion, title: "False positives?", text: "Report a misjudged URL and we will retune the model" },
 ];

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="socBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080e22" />
+      <stop offset="50%" stop-color="#0e173a" />
+      <stop offset="100%" stop-color="#050714" />
+    </linearGradient>
+    <linearGradient id="radarSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+    </linearGradient>
+    <filter id="glow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#socBg)" rx="24" />
+
+  <!-- Multi-color glowing aura orbs -->
+  <circle cx="280" cy="220" r="150" fill="#00f0ff" opacity="0.18" filter="url(#glow3)" />
+  <circle cx="560" cy="360" r="160" fill="#a855f7" opacity="0.22" filter="url(#glow3)" />
+  <circle cx="400" cy="500" r="130" fill="#10b981" opacity="0.15" filter="url(#glow3)" />
+
+  <!-- Radar Grid & Circles -->
+  <g stroke="rgba(0, 240, 255, 0.15)" stroke-width="1.5">
+    <circle cx="400" cy="300" r="220" fill="none" stroke-dasharray="6 6" />
+    <circle cx="400" cy="300" r="160" fill="none" />
+    <circle cx="400" cy="300" r="100" fill="none" stroke-dasharray="4 4" />
+    <circle cx="400" cy="300" r="40" fill="none" />
+    <line x1="400" y1="80" x2="400" y2="520" />
+    <line x1="180" y1="300" x2="620" y2="300" />
+    <line x1="240" y1="140" x2="560" y2="460" stroke-dasharray="4 4" stroke="rgba(168, 85, 247, 0.2)" />
+    <line x1="240" y1="460" x2="560" y2="140" stroke-dasharray="4 4" stroke="rgba(168, 85, 247, 0.2)" />
+  </g>
+
+  <!-- Radar Sweeper Conic Polygon -->
+  <path d="M400 300 L580 160 A 220 220 0 0 1 620 300 Z" fill="url(#radarSweep)" opacity="0.5" />
+
+  <!-- Threat Blips -->
+  <circle cx="510" cy="210" r="7" fill="#ef4444" filter="url(#glow3)" />
+  <circle cx="510" cy="210" r="16" fill="none" stroke="#ef4444" stroke-width="1.5" opacity="0.6" />
+  <text x="524" y="205" fill="#fca5a5" font-size="10" font-family="monospace">AiTM PROXY (97/100)</text>
+
+  <circle cx="310" cy="220" r="6" fill="#f59e0b" filter="url(#glow3)" />
+  <text x="210" y="215" fill="#fde68a" font-size="10" font-family="monospace">CLOAKED LINK</text>
+
+  <circle cx="460" cy="390" r="6" fill="#10b981" filter="url(#glow3)" />
+  <text x="475" y="395" fill="#86efac" font-size="10" font-family="monospace">VERIFIED CLEAN</text>
+
+  <circle cx="280" cy="360" r="7" fill="#ef4444" filter="url(#glow3)" />
+  <text x="180" y="375" fill="#fca5a5" font-size="10" font-family="monospace">TYPOSQUAT T1566</text>
+
+  <!-- Central Intercept HUD -->
+  <circle cx="400" cy="300" r="8" fill="#00f0ff" filter="url(#glow3)" />
+
+  <!-- Telemetry Badge Upper Left -->
+  <g transform="translate(60, 50)">
+    <rect width="220" height="58" rx="14" fill="rgba(15, 23, 42, 0.88)" stroke="rgba(0, 240, 255, 0.35)" />
+    <text x="16" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="sans-serif">SOC THREAT TELEMETRY</text>
+    <text x="16" y="44" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">12 Global Nodes Active</text>
+  </g>
+
+  <!-- Telemetry Badge Lower Right -->
+  <g transform="translate(520, 490)">
+    <rect width="220" height="58" rx="14" fill="rgba(15, 23, 42, 0.88)" stroke="rgba(168, 85, 247, 0.35)" />
+    <text x="16" y="24" fill="#c084fc" font-size="11" font-weight="bold" font-family="sans-serif">MITRE ATT&amp;CK MATRIX</text>
+    <text x="16" y="44" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Real-Time Mapping</text>
+  </g>
+</svg>

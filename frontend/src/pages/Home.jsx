@@ -131,6 +131,102 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ---------------- VISUAL SHOWCASE GALLERY & PHOTOS ---------------- */}
+      <section className="section-pad mt-28" data-testid="visual-showcase">
+        <SectionHeading
+          center
+          eyebrow="Visual Architecture"
+          title={<>Explore the <span className="text-gradient">PhishGuard Intelligence</span> Matrix</>}
+          subtitle="Interactive visual representations of the multi-dimensional Decision Tree pipeline, neural signals, and global threat telemetry radar."
+        />
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-3">
+          {/* Card 1: Multi-Layered Heuristic AI Engine */}
+          <Reveal delay={0.1}>
+            <div className="glass glow-border card-hover group relative flex h-full flex-col overflow-hidden rounded-3xl p-6 sm:p-7">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl">
+                <img
+                  src="/images/cyber-shield.svg"
+                  alt="Multi-Layered Cyber Shield Engine"
+                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-cyan-400/40 bg-cyan-400/20 px-3 py-1 text-[11px] font-bold text-cyan-200 backdrop-blur-md">
+                  <ShieldCheck className="h-3 w-3 text-cyan-300" />
+                  97.4% Empirical Accuracy
+                </span>
+              </div>
+              <h3 className="mt-5 font-display text-lg font-semibold text-white group-hover:text-cyan-200 transition">
+                Autonomous Shield Engine
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-slate-400 flex-1">
+                Active heuristic verification across TLS encryption, raw IP detection, and Shannon randomness entropy checks.
+              </p>
+              <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3 text-[11px] text-cyan-300">
+                <span className="font-mono">Sub-85ms Latency</span>
+                <span className="text-emerald-400 font-semibold">Zero-Hour Active</span>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Card 2: 51-Feature Neural Decision Pipeline */}
+          <Reveal delay={0.2}>
+            <div className="glass glow-border card-hover group relative flex h-full flex-col overflow-hidden rounded-3xl p-6 sm:p-7">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl">
+                <img
+                  src="/images/ai-neural-threat.svg"
+                  alt="51-Feature Decision Tree Pipeline"
+                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-purple-500/40 bg-purple-500/20 px-3 py-1 text-[11px] font-bold text-purple-200 backdrop-blur-md">
+                  <Brain className="h-3 w-3 text-purple-300" />
+                  51 Multi-Dimensional Features
+                </span>
+              </div>
+              <h3 className="mt-5 font-display text-lg font-semibold text-white group-hover:text-purple-200 transition">
+                Decision Tree Neural Matrix
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-slate-400 flex-1">
+                Trained on the benchmark PhiUSIIL dataset, analyzing lexical syntax, HTML DOM form inputs, and financial triggers.
+              </p>
+              <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3 text-[11px] text-purple-300">
+                <span className="font-mono">CART Tree Algorithm</span>
+                <span className="text-purple-400 font-semibold">Explainable AI</span>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Card 3: SOC Global Threat Telemetry */}
+          <Reveal delay={0.3}>
+            <div className="glass glow-border card-hover group relative flex h-full flex-col overflow-hidden rounded-3xl p-6 sm:p-7">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl">
+                <img
+                  src="/images/soc-command-radar.svg"
+                  alt="SOC Global Radar & MITRE ATT&CK Matrix"
+                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-pink-500/40 bg-pink-500/20 px-3 py-1 text-[11px] font-bold text-pink-200 backdrop-blur-md">
+                  <Radar className="h-3 w-3 text-pink-300 animate-spin" />
+                  MITRE ATT&CK Mapping
+                </span>
+              </div>
+              <h3 className="mt-5 font-display text-lg font-semibold text-white group-hover:text-pink-200 transition">
+                SOC Threat Telemetry Radar
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-slate-400 flex-1">
+                12 active worldwide nodes plotting Adversary-in-the-Middle (AiTM), Quishing, and Typosquatting campaigns.
+              </p>
+              <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3 text-[11px] text-pink-300">
+                <span className="font-mono">12 Global Nodes</span>
+                <span className="text-cyan-300 font-semibold">Live Threat Intel</span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------------- HOW IT WORKS ---------------- */}
       <section className="section-pad mt-28" data-testid="how-it-works">
         <SectionHeading

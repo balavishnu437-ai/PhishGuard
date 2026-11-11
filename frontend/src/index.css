@@ -85,37 +85,54 @@
 
 @layer components {
     .glass {
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.72), rgba(7, 11, 24, 0.6));
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        border: 1px solid rgba(125, 180, 255, 0.1);
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.78), rgba(7, 11, 24, 0.65));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
     }
     .glass-soft {
-        background: rgba(13, 20, 38, 0.45);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(125, 180, 255, 0.08);
+        background: rgba(13, 20, 38, 0.55);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(168, 85, 247, 0.15);
+    }
+    .glass-vibrant {
+        background: linear-gradient(135deg, rgba(30, 27, 75, 0.55), rgba(15, 23, 42, 0.75) 50%, rgba(13, 148, 136, 0.35));
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 12px 40px -10px rgba(168, 85, 247, 0.25);
     }
     .text-gradient {
-        background: linear-gradient(92deg, #67e8f9 0%, #38bdf8 38%, #34d399 100%);
+        background: linear-gradient(110deg, #38bdf8 0%, #818cf8 28%, #c084fc 55%, #f472b6 80%, #34d399 100%);
+        background-size: 240% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: text-gradient-flow 7s ease infinite;
+    }
+    .text-gradient-purple {
+        background: linear-gradient(110deg, #c084fc 0%, #e879f9 50%, #38bdf8 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
     }
     .bg-grid {
         background-image:
-            linear-gradient(rgba(99, 161, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99, 161, 255, 0.05) 1px, transparent 1px);
-        background-size: 44px 44px;
-        mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 30%, transparent 100%);
-        -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 30%, transparent 100%);
+            linear-gradient(rgba(148, 163, 255, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(148, 163, 255, 0.07) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 35%, transparent 100%);
+        -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 35%, transparent 100%);
     }
     .radar-sweep {
         background: conic-gradient(
             from 0deg,
             rgba(0, 240, 255, 0) 0deg,
+            rgba(168, 85, 247, 0.15) 180deg,
             rgba(0, 240, 255, 0) 290deg,
-            rgba(0, 240, 255, 0.45) 355deg,
+            rgba(0, 240, 255, 0.5) 355deg,
             rgba(0, 240, 255, 0) 360deg
         );
         animation: radar-spin 2.4s linear infinite;
@@ -129,7 +146,7 @@
         inset: 0;
         border-radius: inherit;
         padding: 1px;
-        background: linear-gradient(135deg, rgba(0, 240, 255, 0.55), rgba(77, 124, 255, 0.14) 42%, rgba(52, 211, 153, 0.45));
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.65), rgba(168, 85, 247, 0.5) 35%, rgba(236, 72, 153, 0.45) 70%, rgba(52, 211, 153, 0.55));
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
@@ -137,20 +154,64 @@
         pointer-events: none;
     }
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 px-6 py-3 text-sm font-semibold text-night shadow-glow-cyan transition duration-300 hover:brightness-110 hover:shadow-[0_0_44px_rgba(0,240,255,0.55)] active:scale-[0.97];
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(6,182,212,0.45)] transition duration-300 hover:brightness-110 hover:shadow-[0_0_48px_rgba(168,85,247,0.55)] active:scale-[0.97];
     }
     .btn-ghost {
-        @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-slate-200 transition duration-300 hover:border-cyan-400/40 hover:text-cyan-200 active:scale-[0.97];
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-medium text-slate-200 backdrop-blur-md transition duration-300 hover:border-cyan-400/40 hover:bg-white/[0.08] hover:text-cyan-200 active:scale-[0.97];
     }
     .section-pad {
         @apply mx-auto w-full max-w-7xl px-5 lg:px-8;
     }
     .neon-field {
-        @apply w-full rounded-2xl border border-white/10 bg-night-700/80 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(0,240,255,0.14),0_0_26px_rgba(0,240,255,0.12)];
+        @apply w-full rounded-2xl border border-white/10 bg-night-700/80 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(0,240,255,0.18),0_0_26px_rgba(168,85,247,0.22)];
     }
     .card-hover {
-        @apply transition duration-300 hover:-translate-y-1 hover:border-cyan-400/25 hover:shadow-[0_18px_50px_-18px_rgba(0,240,255,0.25)];
+        @apply transition duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:shadow-[0_20px_50px_-15px_rgba(168,85,247,0.3)];
     }
+}
+
+@keyframes text-gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float-orb-1 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(70px, -60px) scale(1.18); }
+    66% { transform: translate(-50px, 45px) scale(0.92); }
+}
+
+@keyframes float-orb-2 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(-80px, 70px) scale(1.15); }
+    66% { transform: translate(60px, -45px) scale(0.88); }
+}
+
+@keyframes float-orb-3 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    50% { transform: translate(55px, 80px) scale(1.22); }
+}
+
+@keyframes float-orb-4 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    50% { transform: translate(-70px, -60px) scale(1.14); }
+}
+
+.animate-orb-1 {
+    animation: float-orb-1 18s ease-in-out infinite;
+}
+
+.animate-orb-2 {
+    animation: float-orb-2 22s ease-in-out infinite;
+}
+
+.animate-orb-3 {
+    animation: float-orb-3 15s ease-in-out infinite;
+}
+
+.animate-orb-4 {
+    animation: float-orb-4 20s ease-in-out infinite;
 }
 
 @keyframes radar-spin {

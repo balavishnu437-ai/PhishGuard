@@ -12,12 +12,12 @@ echo.
 start "PhishGuard Backend" cmd /k "cd /d "%~dp0backend" && "C:\Users\Vishnu\AppData\Local\Programs\Python\Python311\python.exe" server.py"
 
 echo Waiting for backend to initialize (8 seconds)...
-timeout /t 8 >nul
+ping 127.0.0.1 -n 9 >nul
 
 start "PhishGuard Frontend" cmd /k "cd /d "%~dp0frontend" && npm run dev"
 
 echo Waiting for frontend dev server (5 seconds)...
-timeout /t 5 >nul
+ping 127.0.0.1 -n 6 >nul
 
 echo Opening browser...
 start http://localhost:3000
