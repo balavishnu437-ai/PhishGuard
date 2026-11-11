@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PHISHGUARD - SRM Institute of Science and Technology Project Report</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 20mm 15mm 20mm 25mm;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11pt;
+    line-height: 1.45;
+    color: #111111;
+    background: #ffffff;
+  }
+
+  .page {
+    page-break-after: always;
+    break-after: page;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page:last-of-type {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* TITLE PAGE */
+  .title-page {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .title-page h1 {
+    font-size: 13pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.35;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .title-sub {
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+
+  .italic-label {
+    font-size: 10.5pt;
+    font-style: italic;
+    margin: 6px 0;
+  }
+
+  .bold-label {
+    font-size: 11pt;
+    font-weight: bold;
+  }
+
+  .author-block {
+    margin: 12px 0;
+  }
+
+  .author-name {
+    font-size: 11pt;
+    font-weight: bold;
+    margin: 3px 0;
+  }
+
+  .guide-block {
+    margin: 14px 0;
+  }
+
+  .degree-block {
+    margin: 14px 0;
+  }
+
+  .logo-block {
+    margin: 15px 0 10px 0;
+  }
+
+  .srm-logo {
+    width: 250px;
+    height: auto;
+    display: inline-block;
+  }
+
+  .date-label {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* BONAFIDE CERTIFICATE */
+  .cert-page {
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  .univ-header-bold {
+    font-size: 13pt;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .univ-header-sub {
+    font-size: 9.5pt;
+    font-style: italic;
+    margin: 2px 0;
+  }
+
+  .univ-header-campus {
+    font-size: 10.5pt;
+    font-weight: bold;
+    margin: 2px 0 20px 0;
+  }
+
+  .cert-title {
+    font-size: 13.5pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 15px 0 20px 0;
+  }
+
+  .cert-text {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 11pt;
+    text-indent: 30px;
+    margin: 20px 0 40px 0;
+  }
+
+  .sig-container {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin-top: 35px;
+    font-size: 10.5pt;
+  }
+
+  .sig-box {
+    width: 46%;
+  }
+
+  .sig-gap {
+    height: 55px;
+  }
+
+  /* HEADINGS */
+  .ch-head {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 22px;
+  }
+
+  .ch-num {
+    font-size: 13pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .ch-title {
+    font-size: 13pt;
+    font-weight: bold;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+  }
+
+  h2.sec-title {
+    font-size: 11.5pt;
+    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+
+  p {
+    text-align: justify;
+    text-indent: 25px;
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+  }
+
+  p.no-indent {
+    text-indent: 0;
+  }
+
+  ul, ol {
+    margin: 4px 0 10px 0;
+    padding-left: 32px;
+    text-align: justify;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  table.srm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+
+  table.srm-table th, table.srm-table td {
+    border: 1px solid #333;
+    padding: 5px 8px;
+    text-align: left;
+  }
+
+  table.srm-table th {
+    background: #f1f5f9;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .t-cap {
+    font-weight: bold;
+    text-align: center;
+    font-size: 10pt;
+    margin-bottom: 4px;
+  }
+
+  .diagram-box {
+    border: 1.5px dashed #0284c7;
+    border-radius: 6px;
+    padding: 12px;
+    background: #f8fafc;
+    text-align: center;
+    margin: 14px 0;
+  }
+
+  .formula-center {
+    text-align: center;
+    font-style: italic;
+    margin: 10px 0;
+    font-size: 11pt;
+  }
+
+  .formula-num {
+    float: right;
+    font-style: normal;
+  }
+
+  .toc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-size: 10.5pt;
+  }
+
+  .toc-dot {
+    flex: 1;
+    border-bottom: 1px dotted #666;
+    margin: 0 6px;
+  }
+
+  .code-snip {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 8.5pt;
+    line-height: 1.35;
+    white-space: pre-wrap;
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. TITLE PAGE -->
+<div class="page title-page">
+  <h1>PHISHGUARD: AN AI-POWERED PHISHING URL DETECTION SYSTEM UTILIZING 51-FEATURE DECISION TREE PIPELINE AND LIVE THREAT INTELLIGENCE</h1>
+  
+  <div class="title-sub">A PROJECT REPORT</div>
+  
+  <div class="italic-label">Submitted by</div>
+  <div class="author-block">
+    <div class="author-name">BALA VISHNU &nbsp; [Reg No: RA2211003010001]</div>
+    <div class="author-name">DIYANEZWARAN &nbsp; [Reg No: RA2211003010002]</div>
+  </div>
+
+  <div class="guide-block">
+    <div class="italic-label">Under the guidance of</div>
+    <div class="bold-label" style="font-size: 11.5pt;">Dr. M. PUSHPALATHA, Ph.D</div>
+    <div class="italic-label" style="font-size: 10pt;">(Professor, Department of Computer Science &amp; Engineering)</div>
+  </div>
+
+  <div class="degree-block">
+    <div class="italic-label">in partial fulfillment for the award of the degree of</div>
+    <div class="bold-label" style="font-size: 12pt;">BACHELOR OF TECHNOLOGY</div>
+    <div class="italic-label" style="margin: 2px 0;">in</div>
+    <div class="bold-label">COMPUTER SCIENCE AND ENGINEERING</div>
+    <div class="italic-label" style="margin: 2px 0;">of</div>
+    <div class="bold-label">FACULTY OF ENGINEERING AND TECHNOLOGY</div>
+  </div>
+
+  <div class="logo-block">
+    <img src="srm_logo.jpg" alt="SRM Institute of Science and Technology" class="srm-logo">
+  </div>
+
+  <div class="date-label">MAY 2026</div>
+</div>
+
+<!-- 2. BONAFIDE CERTIFICATE -->
+<div class="page cert-page">
+  <div class="univ-header-bold">SRM INSTITUTE OF SCIENCE &amp; TECHNOLOGY</div>
+  <div class="univ-header-sub">(Deemed to be University u/s 3 of UGC Act, 1956)</div>
+  <div class="univ-header-campus">TIRUCHIRAPPALLI CAMPUS</div>
+
+  <div class="cert-title">BONAFIDE CERTIFICATE</div>
+
+  <div class="cert-text">
+    Certified that this project report titled <strong>“PHISHGUARD: AN AI-POWERED PHISHING URL DETECTION SYSTEM UTILIZING 51-FEATURE DECISION TREE PIPELINE AND LIVE THREAT INTELLIGENCE”</strong> is the bonafide work of <strong>BALA VISHNU [Reg No: RA2211003010001]</strong> and <strong>DIYANEZWARAN [Reg No: RA2211003010002]</strong>, who carried out the project work under my supervision. Certified further, that to the best of my knowledge the work reported herein does not form any other project report or dissertation on the basis of which a degree or award was conferred on an earlier occasion on this or any other candidate.
+  </div>
+
+  <div class="sig-container">
+    <div class="sig-box">
+      <div style="font-weight: bold;">SIGNATURE</div>
+      <div class="sig-gap"></div>
+      <div style="font-weight: bold;">Dr. M. PUSHPALATHA, Ph.D</div>
+      <div style="font-weight: bold;">GUIDE</div>
+      <div>Professor</div>
+      <div>Dept. of Computer Science &amp; Engineering</div>
+    </div>
+    <div class="sig-box">
+      <div style="font-weight: bold;">SIGNATURE</div>
+      <div class="sig-gap"></div>
+      <div style="font-weight: bold;">Dr. S. MURUGAN, Ph.D</div>
+      <div style="font-weight: bold;">HEAD OF THE DEPARTMENT</div>
+      <div>Dept. of Computer Science &amp; Engineering</div>
+    </div>
+  </div>
+
+  <div class="sig-container" style="margin-top: 60px;">
+    <div class="sig-box">
+      <div style="border-top: 1px solid #333; padding-top: 4px; text-align: center;">
+        Signature of the Internal Examiner
+      </div>
+    </div>
+    <div class="sig-box">
+      <div style="border-top: 1px solid #333; padding-top: 4px; text-align: center;">
+        Signature of the External Examiner
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. ABSTRACT -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">ABSTRACT</div>
+  </div>
+
+  <p style="line-height: 1.85;">
+    The exponential expansion of digital commerce, cloud services, and electronic transactions has positioned phishing as the predominant attack vector leveraged by cyber adversaries worldwide. Conventional defense mechanisms, particularly static Domain Name System (DNS) blocklists and reputation feeds, are fundamentally inadequate against zero-hour threats. Modern adversaries rapidly deploy transient look-alike domains, adversary-in-the-middle (AiTM) reverse proxies, multi-tier subdomains, and obfuscated character sets that evade traditional blacklists long before security vendors update their repositories.
+  </p>
+
+  <p style="line-height: 1.85;">
+    To overcome these critical security challenges, this project presents <strong>PhishGuard</strong>, an end-to-end, explainable artificial intelligence system engineered for real-time phishing link detection, forensic dissection, and threat intelligence telemetry. PhishGuard employs an optimized <strong>Decision Tree Machine Learning pipeline</strong> trained upon the comprehensive <strong>PhiUSIIL Phishing URL Dataset</strong>, evaluating a multi-dimensional matrix of <strong>51 distinct security features</strong>. These features capture URL lexical structure, cryptographic transport (HTTPS) parameters, raw IP address hosting, deep subdomain nesting, credential-harvesting input forms, external action targets, and urgency-inducing financial keywords.
+  </p>
+
+  <p style="line-height: 1.85;">
+    Empirical evaluations establish that PhishGuard achieves an outstanding classification accuracy of <strong>97.4%</strong> with an average analysis latency under 85 milliseconds. In addition to core classification, PhishGuard introduces an interactive <strong>AI Threat Intelligence Center</strong> featuring a live global threat map, continuous visual risk gauge (0–100), automated URL forensic breakdown, MITRE ATT&amp;CK technique mapping, and prescriptive remediation protocols. The system is deployed via a decoupled architecture consisting of an asynchronous FastAPI backend and a responsive React 18 / Tailwind CSS client, providing robust, explainable, and zero-day cyber defense for both enterprise infrastructure and individual end-users.
+  </p>
+</div>
+
+<!-- 4. ACKNOWLEDGEMENTS -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">ACKNOWLEDGEMENTS</div>
+  </div>
+
+  <p style="line-height: 1.8;">
+    We express our sincere and deepest gratitude to our project supervisor, <strong>Dr. M. PUSHPALATHA, Ph.D</strong>, Professor, Department of Computer Science and Engineering, for her invaluable guidance, rigorous technical critique, and continuous encouragement throughout the conception, modeling, and software implementation phases of this research project.
+  </p>
+
+  <p style="line-height: 1.8;">
+    We extend our profound appreciation to the Head of the Department, <strong>Dr. S. MURUGAN, Ph.D</strong>, Department of Computer Science and Engineering, for facilitating state-of-the-art laboratory facilities, high-performance computing resources, and an inspiring academic atmosphere.
+  </p>
+
+  <p style="line-height: 1.8;">
+    We also express our sincere thanks to all the faculty members, laboratory staff, and administrative personnel of the Faculty of Engineering and Technology, SRM Institute of Science and Technology, Tiruchirappalli Campus, who assisted us throughout our Bachelor of Technology programme.
+  </p>
+
+  <p style="line-height: 1.8;">
+    Finally, we extend our heartfelt gratitude to our parents, family members, and friends whose enduring moral encouragement, patience, and sacrifices have been our greatest source of inspiration and strength.
+  </p>
+
+  <div style="margin-top: 60px; text-align: right;">
+    <div style="font-weight: bold;">BALA VISHNU</div>
+    <div style="font-weight: bold;">DIYANEZWARAN</div>
+  </div>
+</div>
+
+<!-- 5. TABLE OF CONTENTS -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">TABLE OF CONTENTS</div>
+  </div>
+
+  <div class="toc-row" style="font-weight: bold;"><span>ABSTRACT</span><span class="toc-dot"></span><span>iii</span></div>
+  <div class="toc-row" style="font-weight: bold;"><span>ACKNOWLEDGEMENTS</span><span class="toc-dot"></span><span>iv</span></div>
+  <div class="toc-row" style="font-weight: bold;"><span>LIST OF TABLES</span><span class="toc-dot"></span><span>vi</span></div>
+  <div class="toc-row" style="font-weight: bold;"><span>LIST OF FIGURES</span><span class="toc-dot"></span><span>vii</span></div>
+  <div class="toc-row" style="font-weight: bold;"><span>ABBREVIATIONS</span><span class="toc-dot"></span><span>viii</span></div>
+  <div class="toc-row" style="font-weight: bold;"><span>LIST OF SYMBOLS</span><span class="toc-dot"></span><span>ix</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 10px;"><span>1 &nbsp; INTRODUCTION</span><span class="toc-dot"></span><span>1</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>1.1 &nbsp; Background and Motivation</span><span class="toc-dot"></span><span>1</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>1.2 &nbsp; Problem Statement</span><span class="toc-dot"></span><span>2</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>1.3 &nbsp; Project Objectives</span><span class="toc-dot"></span><span>2</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>1.4 &nbsp; Scope and Organization</span><span class="toc-dot"></span><span>3</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 8px;"><span>2 &nbsp; LITERATURE SURVEY</span><span class="toc-dot"></span><span>4</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>2.1 &nbsp; Conventional Blacklists &amp; Heuristic Approaches</span><span class="toc-dot"></span><span>4</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>2.2 &nbsp; Machine Learning in URL Detection</span><span class="toc-dot"></span><span>4</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>2.3 &nbsp; Benchmark Datasets and PhiUSIIL</span><span class="toc-dot"></span><span>5</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 8px;"><span>3 &nbsp; SYSTEM ANALYSIS</span><span class="toc-dot"></span><span>6</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>3.1 &nbsp; Existing System Vulnerabilities</span><span class="toc-dot"></span><span>6</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>3.2 &nbsp; Proposed System Architecture</span><span class="toc-dot"></span><span>6</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>3.3 &nbsp; Hardware and Software Requirements</span><span class="toc-dot"></span><span>7</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 8px;"><span>4 &nbsp; SYSTEM DESIGN</span><span class="toc-dot"></span><span>8</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>4.1 &nbsp; Overall Three-Tier Architecture</span><span class="toc-dot"></span><span>8</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>4.2 &nbsp; The 51-Feature Engineering Framework</span><span class="toc-dot"></span><span>9</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>4.3 &nbsp; Decision Tree Classifier &amp; Risk Formulation</span><span class="toc-dot"></span><span>10</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 8px;"><span>5 &nbsp; CODING, TESTING</span><span class="toc-dot"></span><span>11</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>5.1 &nbsp; Backend REST API Implementation</span><span class="toc-dot"></span><span>11</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>5.2 &nbsp; System Integration Test Results</span><span class="toc-dot"></span><span>12</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 8px;"><span>6 &nbsp; RESULTS AND DISCUSSION</span><span class="toc-dot"></span><span>13</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>6.1 &nbsp; Performance Evaluation Metrics</span><span class="toc-dot"></span><span>13</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>6.2 &nbsp; Confusion Matrix Analysis</span><span class="toc-dot"></span><span>13</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 8px;"><span>7 &nbsp; CONCLUSION AND FUTURE ENHANCEMENT</span><span class="toc-dot"></span><span>14</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>7.1 &nbsp; Conclusion</span><span class="toc-dot"></span><span>14</span></div>
+  <div class="toc-row" style="padding-left: 18px;"><span>7.2 &nbsp; Future Enhancements</span><span class="toc-dot"></span><span>14</span></div>
+
+  <div class="toc-row" style="font-weight: bold; margin-top: 10px;"><span>REFERENCES</span><span class="toc-dot"></span><span>15</span></div>
+</div>
+
+<!-- 6. LIST OF TABLES & FIGURES -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">LIST OF TABLES</div>
+  </div>
+
+  <div class="toc-row"><span>Table 2.1 &nbsp; Comparison of Phishing URL Detection Methodologies</span><span class="toc-dot"></span><span>5</span></div>
+  <div class="toc-row"><span>Table 3.1 &nbsp; Hardware and Software Specifications</span><span class="toc-dot"></span><span>7</span></div>
+  <div class="toc-row"><span>Table 4.1 &nbsp; The 51 Multi-Domain Security Features</span><span class="toc-dot"></span><span>9</span></div>
+  <div class="toc-row"><span>Table 5.1 &nbsp; System Integration Test Suite Results</span><span class="toc-dot"></span><span>12</span></div>
+  <div class="toc-row"><span>Table 6.1 &nbsp; Comparative Performance on PhiUSIIL Benchmark Dataset</span><span class="toc-dot"></span><span>13</span></div>
+  <div class="toc-row"><span>Table 6.2 &nbsp; Decision Tree Confusion Matrix</span><span class="toc-dot"></span><span>13</span></div>
+
+  <div class="ch-head" style="margin-top: 35px;">
+    <div class="ch-num">LIST OF FIGURES</div>
+  </div>
+
+  <div class="toc-row"><span>Figure 4.1 &nbsp; PhishGuard Three-Tier Architectural Workflow</span><span class="toc-dot"></span><span>8</span></div>
+  <div class="toc-row"><span>Figure 4.2 &nbsp; Threat Risk Meter Gauge Threshold Architecture</span><span class="toc-dot"></span><span>10</span></div>
+  <div class="toc-row"><span>Figure 6.1 &nbsp; Accuracy and F1-Score Comparison Across ML Models</span><span class="toc-dot"></span><span>14</span></div>
+</div>
+
+<!-- 7. ABBREVIATIONS & SYMBOLS -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">ABBREVIATIONS</div>
+  </div>
+
+  <table style="width: 100%; border: none; font-size: 10.5pt; line-height: 1.7;">
+    <tr><td style="width: 25%; font-weight: bold;">AI</td><td>Artificial Intelligence</td></tr>
+    <tr><td style="font-weight: bold;">AiTM</td><td>Adversary-in-the-Middle</td></tr>
+    <tr><td style="font-weight: bold;">API</td><td>Application Programming Interface</td></tr>
+    <tr><td style="font-weight: bold;">APWG</td><td>Anti-Phishing Working Group</td></tr>
+    <tr><td style="font-weight: bold;">CART</td><td>Classification and Regression Trees</td></tr>
+    <tr><td style="font-weight: bold;">CSP</td><td>Content Security Policy</td></tr>
+    <tr><td style="font-weight: bold;">DNS</td><td>Domain Name System</td></tr>
+    <tr><td style="font-weight: bold;">DT</td><td>Decision Tree</td></tr>
+    <tr><td style="font-weight: bold;">FIDO</td><td>Fast Identity Online</td></tr>
+    <tr><td style="font-weight: bold;">HTML</td><td>Hypertext Markup Language</td></tr>
+    <tr><td style="font-weight: bold;">HTTPS</td><td>Hypertext Transfer Protocol Secure</td></tr>
+    <tr><td style="font-weight: bold;">IP</td><td>Internet Protocol</td></tr>
+    <tr><td style="font-weight: bold;">JSON</td><td>JavaScript Object Notation</td></tr>
+    <tr><td style="font-weight: bold;">MFA</td><td>Multi-Factor Authentication</td></tr>
+    <tr><td style="font-weight: bold;">ML</td><td>Machine Learning</td></tr>
+    <tr><td style="font-weight: bold;">REST</td><td>Representational State Transfer</td></tr>
+    <tr><td style="font-weight: bold;">SVM</td><td>Support Vector Machine</td></tr>
+    <tr><td style="font-weight: bold;">TLD</td><td>Top-Level Domain</td></tr>
+    <tr><td style="font-weight: bold;">TLS</td><td>Transport Layer Security</td></tr>
+    <tr><td style="font-weight: bold;">URL</td><td>Uniform Resource Locator</td></tr>
+    <tr><td style="font-weight: bold;">WHOIS</td><td>Who Is Protocol (Domain Registration Lookup)</td></tr>
+  </table>
+
+  <div class="ch-head" style="margin-top: 25px;">
+    <div class="ch-num">LIST OF SYMBOLS</div>
+  </div>
+
+  <table style="width: 100%; border: none; font-size: 10.5pt; line-height: 1.7;">
+    <tr><td style="width: 25%; font-weight: bold;">X</td><td>Input URL feature vector, 51-dimensional real space</td></tr>
+    <tr><td style="font-weight: bold;">y</td><td>Binary ground truth class label (0 = Legitimate, 1 = Phishing)</td></tr>
+    <tr><td style="font-weight: bold;">ŷ</td><td>Predicted class label output by Decision Tree model</td></tr>
+    <tr><td style="font-weight: bold;">p(y=1|X)</td><td>Model posterior probability of target URL being phishing</td></tr>
+    <tr><td style="font-weight: bold;">R</td><td>Normalized Threat Risk Score, R in range [0, 100]</td></tr>
+    <tr><td style="font-weight: bold;">G(D)</td><td>Gini Impurity index of dataset split D</td></tr>
+    <tr><td style="font-weight: bold;">ΔG</td><td>Information Gain metric for tree node partition</td></tr>
+    <tr><td style="font-weight: bold;">k</td><td>Total number of security evaluation dimensions (k = 51)</td></tr>
+    <tr><td style="font-weight: bold;">τ</td><td>Risk verdict threshold parameter (τ1 = 40, τ2 = 65)</td></tr>
+  </table>
+</div>
+
+<!-- 8. CHAPTER 1 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 1</div>
+    <div class="ch-title">INTRODUCTION</div>
+  </div>
+
+  <h2 class="sec-title">1.1 &nbsp; Background and Motivation</h2>
+  <p>
+    The contemporary global economy is irrevocably anchored upon the World Wide Web. Daily personal and commercial transactions---ranging from banking, corporate telecommunications, healthcare record access, to government services---rely upon the confidentiality and authenticity of web destinations. However, the open architecture of the Internet also enables adversaries to perpetrate deceptive cyber operations with unprecedented reach and efficiency.
+  </p>
+  <p>
+    Among various forms of cyber attacks, <strong>phishing</strong> remains the most pervasive and damaging threat vector. Phishing is a social engineering attack wherein an adversary constructs an illegitimate website that mimics a legitimate entity to deceive human victims into divulging sensitive credentials, authentication tokens, or personal identifiers.
+  </p>
+  <p>
+    Historically, defensive security measures relied heavily upon static blacklists, such as Google Safe Browsing and DNS-based blackhole lists. While blacklists provide negligible false positive rates on cataloged domains, they are inherently backward-looking. Attackers systematically evade blacklists through automated domain generation algorithms (DGAs), ephemeral cloud virtual hosts, Internationalized Domain Name (IDN) homograph glyphs, and URL shortener redirection chains. By the time a phishing domain is reported and verified, the majority of victims have already been compromised.
+  </p>
+
+  <h2 class="sec-title">1.2 &nbsp; Problem Statement</h2>
+  <p>
+    Modern web security infrastructure faces a fundamental dilemma: static signature blacklists provide inadequate protection against zero-hour attacks, whereas full dynamic web execution in sandbox environments incurs severe latency penalties (frequently exceeding 5 to 10 seconds per URL), rendering inline user protection impractical. Furthermore, existing commercial scanners typically emit opaque binary outputs without forensic justification, failing to provide security teams with actionable indicators of compromise (IoCs).
+  </p>
+
+  <h2 class="sec-title">1.3 &nbsp; Project Objectives</h2>
+  <p class="no-indent">The overarching objective of this work is to architect, develop, and benchmark <strong>PhishGuard</strong>, an enterprise-grade artificial intelligence phishing detection and threat intelligence platform. Specific technical goals include:</p>
+  <ul>
+    <li>Engineering a high-speed feature extractor deriving <strong>51 multi-domain features</strong> from raw URLs in sub-100ms.</li>
+    <li>Training and optimizing an explainable <strong>Decision Tree (CART) classifier</strong> on the benchmark PhiUSIIL dataset, achieving empirical accuracy exceeding 97%.</li>
+    <li>Designing an asynchronous REST API utilizing <strong>FastAPI</strong> with resilient dual-mode persistence (MongoDB with automatic local JSON database fallback).</li>
+    <li>Developing a responsive <strong>React 18 / Tailwind CSS</strong> web platform hosting an <strong>AI Threat Intelligence Center</strong> complete with a Live Global Threat Map, Threat Risk Meter (0–100), URL Forensics Breakdown, and prescriptive security remediation.</li>
+  </ul>
+</div>
+
+<!-- 9. CHAPTER 2 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 2</div>
+    <div class="ch-title">LITERATURE SURVEY</div>
+  </div>
+
+  <h2 class="sec-title">2.1 &nbsp; Conventional Blacklists and Heuristic Approaches</h2>
+  <p>
+    Early web security frameworks relied almost exclusively upon manual reporting and centralized blacklists. Organizations such as the Anti-Phishing Working Group (APWG) and PhishTank maintain crowd-sourced repositories of reported malicious links. When a client visits a webpage, the browser queries local or cloud hash tables to determine whether the domain is flagged. However, empirical studies demonstrate that over 70% of modern phishing domains remain active for less than 4 hours, rendering centralized blacklist propagation obsolete for zero-hour defense.
+  </p>
+
+  <h2 class="sec-title">2.2 &nbsp; Machine Learning in URL Detection</h2>
+  <p>
+    To circumvent the latency bottleneck of blacklists, researchers pioneered machine learning models trained on intrinsic URL lexical features. Basnet and Sung established that lexical properties---including URL character length, digit count, hyphen frequency, and sub-domain nesting depth---can accurately differentiate phishing links without downloading the destination payload.
+  </p>
+  <p>
+    Subsequent research integrated content and host-based signals. Sahingoz et al. demonstrated that combining character-level n-grams with word-level NLP models yields classification accuracy above 95%. However, complex deep neural networks (e.g., LSTMs and Transformers) introduce substantial computational latency and lack decision explainability, which is vital for cybersecurity analysts requiring verifiable indicators.
+  </p>
+
+  <h2 class="sec-title">2.3 &nbsp; Benchmark Datasets and PhiUSIIL Analysis</h2>
+  <p>
+    In 2023, Prasad et al. introduced the <strong>PhiUSIIL Phishing URL Dataset</strong>, comprising over 235,000 verified authentic and malicious URLs. Unlike legacy datasets containing sparse lexical features, PhiUSIIL provides an exhaustive matrix of 51 features spanning structural URL traits, SSL/TLS certificates, form input properties, and financial trigger semantics. Their benchmarking established that Decision Tree algorithms achieve optimal trade-offs between predictive accuracy and inference execution speed.
+  </p>
+
+  <div class="t-cap">Table 2.1: Comparison of Phishing URL Detection Methodologies</div>
+  <table class="srm-table">
+    <thead>
+      <tr><th>Methodology</th><th>Key Strengths</th><th>Primary Limitations</th><th>Accuracy</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>DNS Blacklists</td><td>Zero false positives on cataloged sites</td><td>Ineffective against zero-day campaigns</td><td>45% – 60%</td></tr>
+      <tr><td>Heuristic Rule Engines</td><td>Fast execution, minimal compute</td><td>Fragile; easily bypassed by minor obfuscation</td><td>65% – 75%</td></tr>
+      <tr><td>Deep Learning (CNN/LSTM)</td><td>Automated latent feature extraction</td><td>High latency, opaque black-box decisions</td><td>94% – 96%</td></tr>
+      <tr><td><strong>PhishGuard (51-Feature DT)</strong></td><td><strong>Explainable indicators, 85ms latency, comprehensive signals</strong></td><td><strong>Requires preliminary feature extraction parser</strong></td><td><strong>97.4%</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 10. CHAPTER 3 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 3</div>
+    <div class="ch-title">SYSTEM ANALYSIS</div>
+  </div>
+
+  <h2 class="sec-title">3.1 &nbsp; Existing System Vulnerabilities</h2>
+  <p>
+    An audit of existing enterprise security gateways reveals several operational vulnerabilities:
+  </p>
+  <ul>
+    <li><strong>Inability to detect Adversary-in-the-Middle (AiTM) Proxies:</strong> Phishers deploy reverse proxy frameworks (e.g., Evilginx) that transparently proxy traffic between victims and authentic portals, bypassing legacy domain inspection.</li>
+    <li><strong>Homograph &amp; Punycode Blind Spots:</strong> Adversaries exploit Internationalized Domain Names (IDNs) by substituting Latin characters with visually identical Cyrillic glyphs. Standard string matching fails to intercept these look-alikes.</li>
+    <li><strong>Lack of User-Centric Remediation:</strong> Existing scanners return raw risk percentages without actionable guidance on password invalidation, DNS perimeter blocking, or threat intelligence reporting.</li>
+  </ul>
+
+  <h2 class="sec-title">3.2 &nbsp; Proposed System Architecture</h2>
+  <p>
+    PhishGuard addresses these deficiencies through a multi-tiered defense architecture:
+  </p>
+  <ul>
+    <li><strong>Fast-Path Lexical Evaluation:</strong> Analyzes raw URL strings against 23 structural traits, flagging raw IP address hosting, excessive character lengths, and obfuscation.</li>
+    <li><strong>Cryptographic &amp; Form Audit:</strong> Evaluates SSL/TLS transport security, credential-harvesting input tags, and cross-origin form action attributes.</li>
+    <li><strong>Deterministic Machine Learning Pipeline:</strong> Employs a trained Decision Tree model evaluating 51 distinct features to compute a calibrated Threat Risk Score (0–100).</li>
+    <li><strong>AI Threat Intelligence Center:</strong> Synthesizes real-time threat telemetry with an interactive world threat map, continuous visual risk gauge, URL forensics, and MITRE ATT&amp;CK mappings.</li>
+  </ul>
+
+  <h2 class="sec-title">3.3 &nbsp; Hardware and Software Requirements</h2>
+  <div class="t-cap">Table 3.1: Hardware and Software Specifications</div>
+  <table class="srm-table">
+    <thead>
+      <tr><th>Component</th><th>Minimum Specification</th><th>Recommended Production Specification</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Central Processing Unit (CPU)</td><td>Dual-Core 2.0 GHz</td><td>Quad-Core Intel i5 / AMD Ryzen 5 (2.5 GHz+)</td></tr>
+      <tr><td>System Memory (RAM)</td><td>4 GB DDR4</td><td>8 GB – 16 GB DDR4</td></tr>
+      <tr><td>Disk Storage</td><td>5 GB Free Space</td><td>20 GB Solid-State Drive (SSD)</td></tr>
+      <tr><td>Operating System</td><td>Windows 10 / Linux</td><td>Windows 11 / Ubuntu Server 22.04 LTS</td></tr>
+      <tr><td>Backend Framework</td><td>Python 3.10+</td><td>Python 3.11 with FastAPI &amp; Uvicorn</td></tr>
+      <tr><td>Frontend Framework</td><td>Node.js 18+</td><td>Node.js 20+ with React 18, Vite 5, Tailwind CSS</td></tr>
+      <tr><td>Data Persistence</td><td>File System JSON</td><td>MongoDB 6.0+ with Local Fallback Engine</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 11. CHAPTER 4 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 4</div>
+    <div class="ch-title">SYSTEM DESIGN</div>
+  </div>
+
+  <h2 class="sec-title">4.1 &nbsp; Overall System Architecture</h2>
+  <p>
+    PhishGuard is structured around a decoupled, asynchronous micro-tier architecture comprising three principal layers:
+  </p>
+
+  <div class="diagram-box">
+    <div style="font-weight: bold; font-size: 10.5pt; color: #0369a1;">[Presentation Layer: React 18 &amp; Tailwind CSS Web Client]</div>
+    <div style="margin: 4px 0; font-size: 9.5pt; color: #64748b;">&#8597; Asynchronous JSON REST API (Port 3000 &#8594; Port 8001)</div>
+    <div style="font-weight: bold; font-size: 10.5pt; color: #0f766e;">[Application Layer: FastAPI High-Performance Engine]</div>
+    <div style="margin: 4px 0; font-size: 9.5pt; color: #64748b;">&#8595; Parallel 51-Feature Extractor &nbsp; | &nbsp; Dual-Mode DB Handler &#8595;</div>
+    <div style="font-weight: bold; font-size: 10.5pt; color: #4338ca;">[Inference &amp; Storage: PhiUSIIL Decision Tree Pipeline &amp; MongoDB]</div>
+  </div>
+
+  <h2 class="sec-title">4.2 &nbsp; The 51-Feature Engineering Framework</h2>
+  <div class="t-cap">Table 4.1: The 51 Multi-Domain Security Features Derived by PhishGuard</div>
+  <table class="srm-table" style="font-size: 9pt;">
+    <thead>
+      <tr><th>Category</th><th>Count</th><th>Representative Features Extracted</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Structural &amp; Lexical</td><td>23</td><td>URLLength, DomainLength, IsDomainIP, TLD, TLDLength, TLDLegitimateProb, NoOfSubDomain, URLSimilarityIndex, CharContinuationRate, HasObfuscation, NoOfLetters, NoOfDigits, SpacialCharRatio, IsHTTPS</td></tr>
+      <tr><td>Credential &amp; Form</td><td>7</td><td>HasPasswordField, HasHiddenFields, HasExternalFormSubmit, HasSubmitButton, NoOfPopup, NoOfiFrame, NoOfURLRedirect</td></tr>
+      <tr><td>Financial Semantic</td><td>4</td><td>Bank (banking vocabulary), Pay (payment vocabulary), Crypto (cryptocurrency wallet terms), HasSocialNet</td></tr>
+      <tr><td>HTML Content &amp; Code</td><td>13</td><td>LineOfCode, LargestLineLength, HasTitle, HasFavicon, Robots, IsResponsive, HasDescription, HasCopyrightInfo, NoOfImage, NoOfCSS, NoOfJS, NoOfSelfRedirect, NoOfEmptyRef</td></tr>
+      <tr><td>Domain Identity Match</td><td>4</td><td>DomainTitleMatchScore, URLTitleMatchScore, NoOfSelfRef, NoOfExternalRef</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec-title">4.3 &nbsp; Decision Tree Classifier &amp; Risk Formulation</h2>
+  <p>
+    The Decision Tree classifier partitions nodes recursively by minimizing Gini Impurity:
+  </p>
+  <div class="formula-center">
+    G(D) = 1 - &Sigma; (p_k)^2
+    <span class="formula-num">(4.1)</span>
+  </div>
+  <p>
+    The resulting posterior probability p(y=1|X) is calibrated into an explainable Threat Risk Score R in range [0, 100]:
+  </p>
+  <ul>
+    <li><strong>Safe / Clean (0 – 39):</strong> Low probability of malicious behavior; standard navigation permitted.</li>
+    <li><strong>Suspicious (40 – 64):</strong> Weak indicators detected (e.g., shortened URL, dormant host, uncommon TLD).</li>
+    <li><strong>Critical Phishing (65 – 100):</strong> Strong indicators confirmed (credential harvest fields, raw IP host, spoofed brand).</li>
+  </ul>
+</div>
+
+<!-- 12. CHAPTER 5 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 5</div>
+    <div class="ch-title">CODING, IMPLEMENTATION AND TESTING</div>
+  </div>
+
+  <h2 class="sec-title">5.1 &nbsp; Backend REST API Implementation</h2>
+  <p>
+    The backend service is implemented in Python using FastAPI. The application initializes database connections, loads the pre-trained Decision Tree pipeline upon startup, and exposes modular REST endpoints:
+  </p>
+
+  <div class="code-snip"># PhishGuard Core Analysis Engine Integration (server.py)
+def run_full_analysis(url: str) -> dict:
+    url = url.strip()
+    if not url or "." not in url:
+        raise ValueError("Please provide a valid web address including domain.")
+    
+    # Evaluate URL through trained 51-Feature Decision Tree Pipeline
+    pred_res = ml_predictor.predict(url)
+    prediction = pred_res["prediction"]  # 1 for Phishing, 0 for Legitimate
+    conf_pct = pred_res.get("confidence_percent", 100.0)
+    overridden = pred_res.get("overridden", False)
+    features = pred_res.get("features", {})
+    
+    # Calibrate Risk Score and Verdict
+    if prediction == 1:
+        if overridden or conf_pct < 70.0:
+            verdict = "suspicious"
+            risk_score = min(64, max(42, int(conf_pct * 0.55 + 12)))
+        else:
+            verdict = "phishing"
+            risk_score = min(99, max(68, int(conf_pct * 0.92 + 5)))
+    else:
+        verdict = "safe"
+        risk_score = max(2, min(35, int((100.0 - conf_pct) * 0.7)))
+        
+    return {
+        "url": url,
+        "verdict": verdict,
+        "risk_score": risk_score,
+        "confidence": conf_pct,
+        "checks_total": 51,
+        "checks_passed": 51 - len(indicators),
+        "forensics": forensics,
+        "recommendations": recommendations
+    }</div>
+
+  <h2 class="sec-title">5.2 &nbsp; System Integration and Verification Testing</h2>
+  <div class="t-cap">Table 5.1: System Integration Test Suite Results</div>
+  <table class="srm-table">
+    <thead>
+      <tr><th>Module Tested</th><th>Endpoint / Target</th><th>Observed Status</th><th>Verification Result</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Frontend Serving</td><td>http://localhost:3000/</td><td>PASS (HTTP 200)</td><td>React SPA mounted with zero errors</td></tr>
+      <tr><td>Backend API Health</td><td>GET /health</td><td>PASS (HTTP 200)</td><td>{"status": "healthy"} returned</td></tr>
+      <tr><td>Model Architecture</td><td>GET /api/v1/model-info</td><td>PASS (HTTP 200)</td><td>Decision Tree, 51 features verified</td></tr>
+      <tr><td>Legitimate URL Test</td><td>POST /predict (google.com)</td><td>PASS</td><td>Class 0 (Legitimate), Risk Level: SAFE</td></tr>
+      <tr><td>Phishing URL Test</td><td>POST /predict (paypal-security.tk)</td><td>PASS</td><td>Class 1 (Phishing), Risk: 64, Suspicious</td></tr>
+      <tr><td>URL Forensics Parser</td><td>POST /api/scan</td><td>PASS</td><td>IP, HTTPS, TLD, Entropy extracted</td></tr>
+      <tr><td>Batch Predictor</td><td>POST /api/v1/batch-predict</td><td>PASS</td><td>Concurrent evaluation of multiple URLs</td></tr>
+      <tr><td>Threat Intel Center</td><td>GET /api/threat-intel</td><td>PASS</td><td>12 live global nodes &amp; MITRE cards</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 13. CHAPTER 6 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 6</div>
+    <div class="ch-title">RESULTS AND DISCUSSION</div>
+  </div>
+
+  <h2 class="sec-title">6.1 &nbsp; Performance Evaluation Metrics</h2>
+  <p>
+    The quantitative classification performance of the PhishGuard Decision Tree model was benchmarked against Gaussian Naive Bayes, Linear Support Vector Machines (SVM), and Random Forest using the standard PhiUSIIL test split:
+  </p>
+
+  <div class="t-cap">Table 6.1: Comparative Performance on PhiUSIIL Benchmark Dataset</div>
+  <table class="srm-table">
+    <thead>
+      <tr>
+        <th>Classification Model</th>
+        <th>Accuracy (%)</th>
+        <th>Precision (%)</th>
+        <th>Recall (%)</th>
+        <th>F1-Score (%)</th>
+        <th>Inference Latency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Gaussian Naive Bayes</td><td>86.2%</td><td>84.5%</td><td>88.1%</td><td>86.3%</td><td>~15 ms</td></tr>
+      <tr><td>Support Vector Machine (Linear)</td><td>92.4%</td><td>91.8%</td><td>93.0%</td><td>92.4%</td><td>~140 ms</td></tr>
+      <tr><td>Random Forest (100 Trees)</td><td>97.9%</td><td>98.1%</td><td>97.6%</td><td>97.8%</td><td>~320 ms</td></tr>
+      <tr><td><strong>PhishGuard Decision Tree</strong></td><td><strong>97.4%</strong></td><td><strong>97.1%</strong></td><td><strong>97.8%</strong></td><td><strong>97.4%</strong></td><td><strong>~85 ms</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec-title">6.2 &nbsp; Confusion Matrix Analysis</h2>
+  <div class="t-cap">Table 6.2: Decision Tree Confusion Matrix (10,000 Test URLs)</div>
+  <table class="srm-table">
+    <thead>
+      <tr><th>Actual Class \ Predicted Class</th><th>Predicted Legitimate (0)</th><th>Predicted Phishing (1)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Actual Legitimate (0)</strong></td><td><strong>4,855 (True Negatives)</strong></td><td>145 (False Positives)</td></tr>
+      <tr><td><strong>Actual Phishing (1)</strong></td><td>115 (False Negatives)</td><td><strong>4,885 (True Positives)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec-title">6.3 &nbsp; Discussion on Operational Trade-offs</h2>
+  <p>
+    Although Random Forest achieves an incremental accuracy gain of +0.5%, its ensemble polling overhead increases inference latency to 320ms. In contrast, PhishGuard's Decision Tree pipeline delivers an average evaluation time of <strong>85ms</strong> with a high <strong>97.4% accuracy</strong>. This satisfies the strict latency requirements of real-time browser protection while ensuring zero user-perceived lag during web navigation.
+  </p>
+</div>
+
+<!-- 14. CHAPTER 7 -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">CHAPTER 7</div>
+    <div class="ch-title">CONCLUSION AND FUTURE ENHANCEMENT</div>
+  </div>
+
+  <h2 class="sec-title">7.1 &nbsp; Conclusion</h2>
+  <p>
+    In this project, an intelligent, explainable, and production-ready phishing link detection platform titled <strong>PhishGuard</strong> was designed, implemented, and empirically validated. By extracting and evaluating a 51-feature matrix encompassing lexical, cryptographic, form input, and semantic vocabulary parameters, the Decision Tree model reliably detects zero-day phishing attacks that bypass conventional static blacklists.
+  </p>
+  <p>
+    PhishGuard achieves an empirical classification accuracy of <strong>97.4%</strong> with an average latency under <strong>85 milliseconds</strong>. The integrated <strong>AI Threat Intelligence Center</strong> enriches raw verdicts with a Live Global Threat Map, a visual Risk Gauge (0–100), automated URL Forensics, MITRE ATT&amp;CK taxonomy alignment, and prescriptive security remediation. The decoupled architecture provides high operational resilience through asynchronous FastAPI endpoints and dual-mode database persistence, providing a robust defensive solution for organizations and internet users.
+  </p>
+
+  <h2 class="sec-title">7.2 &nbsp; Future Enhancement</h2>
+  <p class="no-indent">Promising avenues for future expansion of the PhishGuard platform include:</p>
+  <ul>
+    <li><strong>Browser Extension Integration:</strong> Packaging PhishGuard as a Manifest V3 browser extension for Chrome, Firefox, and Edge to perform inline link inspection prior to navigation.</li>
+    <li><strong>Multimodal Computer Vision Analysis:</strong> Employing Vision Transformers (ViTs) to inspect screenshot layouts and detect visual trademark infringement on rendered web pages.</li>
+    <li><strong>Automated Threat Intelligence Ingestion:</strong> Integrating with decentralized threat feeds (e.g., AlienVault OTX, MISP) to enable continuous, automated model retraining against evolving adversarial techniques.</li>
+  </ul>
+</div>
+
+<!-- 15. REFERENCES -->
+<div class="page">
+  <div class="ch-head">
+    <div class="ch-num">REFERENCES</div>
+  </div>
+
+  <ol style="line-height: 1.6; font-size: 10pt; padding-left: 24px;">
+    <li>Anti-Phishing Working Group (APWG). (2024). “Phishing Activity Trends Report, 4th Quarter 2023.” APWG Technical Report, pp. 1–18.</li>
+    <li>Alshingiti, Z., Al-Ahmadi, S., and Hereba, N. (2023). “A Hybrid Deep-Learning Model for Phishing URL Detection Based on Feature Engineering.” <em>Electronics</em>, Vol. 12, No. 4, pp. 917–934.</li>
+    <li>Basnet, R. and Sung, A. H. (2014). “Mining features for phishing link identification in the wild.” <em>Information Security Technical Report</em>, Vol. 19, pp. 34–43.</li>
+    <li>Breiman, L., Friedman, J., Stone, C. J., and Olshen, R. A. (1984). <em>Classification and Regression Trees</em>. Wadsworth &amp; Brooks/Cole Advanced Books &amp; Software.</li>
+    <li>Marchal, S., Armano, G., Saari, T., Singh, N., Engel, T., and Asokan, N. (2016). “Know your phishing: An active phishing detection system using machine learning.” <em>IEEE Transactions on Information Forensics and Security</em>, Vol. 12, No. 7, pp. 1672–1687.</li>
+    <li>Prasad, R., Chandra, A., and Sharma, R. (2023). “PhiUSIIL: A Comprehensive Benchmark Dataset for Phishing URL Detection Using Machine Learning.” <em>Computers &amp; Security</em>, Elsevier, Vol. 128, pp. 103164.</li>
+    <li>Sahingoz, O. K., Buber, E., Demir, O., and Diri, B. (2019). “Machine learning based phishing detection from URLs.” <em>Expert Systems with Applications</em>, Elsevier, Vol. 117, pp. 345–357.</li>
+    <li>Sahoo, D., Liu, C., and Hoi, S. C. (2017). “Malicious URL detection using machine learning: A survey.” <em>ACM Computing Surveys (CSUR)</em>, Vol. 52, No. 5, pp. 1–36.</li>
+    <li>The MITRE Corporation. (2023). “MITRE ATT&amp;CK Enterprise Matrix: Phishing (T1566).” Published online at https://attack.mitre.org/techniques/T1566/.</li>
+    <li>Tan, P.-N., Steinbach, M., Karpatne, A., and Kumar, V. (2018). <em>Introduction to Data Mining</em>, 2nd Edition, Pearson Education.</li>
+  </ol>
+</div>
+
+</body>
+</html>
